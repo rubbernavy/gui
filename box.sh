@@ -16,5 +16,5 @@ vagrant halt &&
 vagrant package --output ${WORK_DIR}/gui.${TSTAMP}.box &&
 vagrant box add --name gui.${TSTAMP} ${WORK_DIR}/gui.${TSTAMP}.box &&
 vagrant halt &&
-rm -rf personal.${TSTAMP}.box &&
+rm -rf gui.${TSTAMP}.box &&
 true
