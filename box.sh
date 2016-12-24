@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-TSTAMP=$(date +%Y%m%d%H%M) &&
+COMMIT_ID=$(git rev-parse --verify HEAD) &&
 WORK_DIR=$(mktemp -d) &&
 vagrant destroy -f &&
 vagrant provision &&
@@ -13,8 +13,8 @@ vagrant halt &&
 vagrant up &&
 sleep 30s &&
 vagrant halt &&
-vagrant package --output ${WORK_DIR}/gui.${TSTAMP}.box &&
-vagrant box add --name gui.${TSTAMP} ${WORK_DIR}/gui.${TSTAMP}.box &&
+vagrant package --output ${WORK_DIR}/gui.${COMMIT_ID}.box &&
+vagrant box add --name gui.${COMMIT_ID} ${WORK_DIR}/gui.${COMMIT_ID}.box &&
 vagrant halt &&
-rm -rf gui.${TSTAMP}.box &&
+rm -rf ${WORK_DIR} &&
 true
